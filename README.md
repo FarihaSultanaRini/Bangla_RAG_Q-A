@@ -15,6 +15,29 @@ Semantic search with FAISS using cosine similarity on normalized embeddings
 
 Answer generation with google/flan-t5-xl seq2seq model
 
+**Setup**
+
+# Install Python packages
+The setup is meant to be in colab envirent
+
+
+pip install faiss-cpu
+pip install -U langchain-community
+pip install pytesseract
+pip install pdf2image
+pip install pdfplumber
+pip install langdetect
+sudo apt-get update
+sudo apt-get install -y poppler-utils
+sudo apt-get install -y tesseract-ocr-ben
+
+**If you get errors with fitz (PyMuPDF), run the following commands to clean old broken installs and reinstall PyMuPDF**
+# Clean up: remove old/broken fitz traces if any
+!rm -rf /usr/local/lib/python3.11/dist-packages/fitz*
+
+# Force reinstall PyMuPDF
+!pip install --force-reinstall PyMuPDF
+
 **FAQ**
 
 
