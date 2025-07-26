@@ -2,7 +2,7 @@
 # project backup has all the file that code generate
 
 Note:
-* Due to GitHub’s notebook rendering limitations, the q_a_rag.ipynb notebook may show errors when viewed directly on GitHub.It will show invalid notebook.
+* Due to GitHub’s notebook rendering limitations, the q_a_rag.ipynb notebook may appear as an invalid notebook or fail to load when viewed directly on GitHub.
 
 * To see the complete outputs, download q_a_rag.ipynb from this repository and open it locally using Jupyter Notebook, VS Code, or Google Colab.
 
