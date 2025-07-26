@@ -18,7 +18,7 @@ Answer generation with google/flan-t5-xl seq2seq model
 #FAQ
 
 
-1. What method or library did you use to extract the text, and why? Did you face any formatting challenges with the PDF content?
+1.What method or library did you use to extract the text, and why? Did you face any formatting challenges with the PDF content?
    
 I used PyMuPDF (fitz) and pdfplumber to extract text from PDFs. PyMuPDF is fast and good for general page text, while pdfplumber is especially helpful for tables and detailed layouts. Together, they helped me get more accurate text from different parts of the PDF.
 For recognizing Bangla text, I also used pytesseract OCR with the Bangla language model, which improved the extraction of Bengali script from images or scanned pages.
