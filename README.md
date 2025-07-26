@@ -2,8 +2,11 @@
 #project backup has all the file that code generate
 
 Due to GitHub’s notebook rendering limitations,  q_a_rag.ipynb  notebook may show an error when opened directly on GitHub.
+
 *To view the complete outputs download q_a_rag.ipynb from this repository.Then Open it locally using Jupyter Notebook, VS Code, or Google Colab.
+
 *To view the only code open q_a_rag_clean.ipynb directly on GitHub.
+
 *The project_backup folder contains all generated files used by the notebook.
 
 # Bangla_RAG_Q-A
