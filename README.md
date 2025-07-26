@@ -3,7 +3,7 @@
 
 This project implements a question-answering system using semantic search with FAISS and answer generation using the Flan-T5 XL model. The pipeline includes OCR, data cleaning, chunking, embedding, retrieval, and answer generation.
 
-#Features
+**Features**
 
 Text extraction from PDFs using OCR (Bangla language supported)
 
@@ -15,30 +15,30 @@ Semantic search with FAISS using cosine similarity on normalized embeddings
 
 Answer generation with google/flan-t5-xl seq2seq model
 
-#FAQ
+**FAQ**
 
 
-1.What method or library did you use to extract the text, and why? Did you face any formatting challenges with the PDF content?
+**1.What method or library did you use to extract the text, and why? Did you face any formatting challenges with the PDF content?**
    
 I used PyMuPDF (fitz) and pdfplumber to extract text from PDFs. PyMuPDF is fast and good for general page text, while pdfplumber is especially helpful for tables and detailed layouts. Together, they helped me get more accurate text from different parts of the PDF.
 For recognizing Bangla text, I also used pytesseract OCR with the Bangla language model, which improved the extraction of Bengali script from images or scanned pages.
 The main challenge was that the PDF has mixed content like paragraphs, tables, and multiple-choice questions (MCQs), which are tricky to extract consistently. In addition, there is a lot of color in the PDF too. I built a custom  robust OCR-based pipeline to extract all data from pdf for this case.
 I achieved good extraction accuracy overall. The only notable challenge remains accurately recognizing MCQs containing Roman numerals. Apart from that, the extraction results are reliable and consistent.
 
-2.What chunking strategy did you choose (e.g. paragraph-based, sentence-based, character limit)? Why do you think it works well for semantic retrieval?
+**2.What chunking strategy did you choose (e.g. paragraph-based, sentence-based, character limit)? Why do you think it works well for semantic retrieval?**
 
 I used a fixed character-limit chunking approach, splitting text into overlapping chunks of about 1200 characters with a 200-character overlap. This ensures each chunk fits well within model token limits while preserving context around chunk boundaries. This method works well because it balances manageable chunk sizes and contextual continuity, helping the retrieval system find relevant text effectively.
 
-3.What embedding model did you use? Why did you choose it? How does it capture the meaning of the text?
+**3.What embedding model did you use? Why did you choose it? How does it capture the meaning of the text?**
 
-I used the intfloat/multilingual-e5-base model from SentenceTransformers. I chose it because:
+ I used the intfloat/multilingual-e5-base model from SentenceTransformers. I chose it because:
 -It supports multiple languages, including Bengali, which is essential for my dataset.
 -It’s designed for sentence- and passage-level embeddings, producing rich semantic vectors that capture the meaning beyond just keywords.
 -It’s efficient and performs well on semantic similarity and retrieval tasks.
 
 This model captures meaning by encoding text into dense vector representations in a high-dimensional space. This process is called vector embedding which comes from the encoder. Each word is converted into numeric values that reflect its meaning in context. Semantically similar texts are mapped closer together in this space. It understands context, syntax, and semantics, enabling it to match related content even when the exact words differ.
 
-4.How are you comparing the query with your stored chunks? Why did you choose this similarity method and storage setup?
+**4.How are you comparing the query with your stored chunks? Why did you choose this similarity method and storage setup?**
 
 I compare the query with stored chunks using FAISS, a fast similarity search library that efficiently handles large sets of vector embeddings. After encoding both the query and chunks into dense vectors using the multilingual-e5-base model, I perform a cosine similarity search (implemented as an inner product search on normalized vectors) in FAISS to find the most relevant chunks.
 I chose this method because:
@@ -47,12 +47,12 @@ I chose this method because:
 -Storing vectors in FAISS index allows fast nearest neighbor search without scanning all data, improving retrieval performance.
 -This setup ensures accurate and efficient retrieval of contextually relevant information to answer queries.
 
-5.How do you ensure that the question and the document chunks are compared meaningfully? What would happen if the query is vague or missing context?
+**5.How do you ensure that the question and the document chunks are compared meaningfully? What would happen if the query is vague or missing context?**
 
 The question and document chunks are both converted into normalized embeddings using the multilingual-e5-base model, allowing comparison based on semantic meaning rather than exact words. This helps retrieve relevant chunks even if the wording differs.
 If the query is vague or lacks context, results may be less accurate or broader because the embedding is less specific. Adding more context or clearer queries improves retrieval, but the system still tries to find the most relevant information available.
 
-6.Do the results seem relevant? If not, what might improve them (e.g. better chunking, better embedding model, larger document)?
-No, my model currently cannot generate precise answers because the data  is not properly cleaned and structured for question-answering tasks. Although it returns relevant chunks, the lack for proper cleaning, better chunking strategy, and proper organization affects answer accuracy. IT need more time to improve the cleaning, chunking, and structuring pipeline .However, my OCR is performing well, and once I apply better cleaning, chunking, and structure the data properly, the model’s QA performance should improve significantly.
+**6.Do the results seem relevant? If not, what might improve them (e.g. better chunking, better embedding model, larger document?**
+No, my model currently cannot generate precise answers because the data  is not properly cleaned and structured for question-answering tasks. Although it returns relevant chunks, the lack for proper cleaning, better chunking strategy, and proper organization affects answer accuracy. IT need more time to improve the cleaning, chunking, and structuring pipeline.However, my OCR is performing well, and once I apply better cleaning, chunking, and structure the data properly, the model’s QA performance should improve significantly.
 
 
