@@ -1,7 +1,9 @@
 # Bangla_RAG_Q-A
- A basic RAG pipeline capable of understanding and responding to both English and Bengali queries. The system should fetch relevant information from a pdf document corpus and generate a meaningful answer grounded in retrieved conten
+A basic RAG pipeline capable of understanding and responding to both English and Bengali queries. The system should fetch relevant information from a pdf document corpus and generate a meaningful answer grounded in retrieved conten
 
 This project implements a question-answering system using semantic search with FAISS and answer generation using the Flan-T5 XL model. The pipeline includes OCR, data cleaning, chunking, embedding, retrieval, and answer generation.
+
+##To see with otutput downlaod the q_a_rag.ipynb notebook
 
 **Features**
 
